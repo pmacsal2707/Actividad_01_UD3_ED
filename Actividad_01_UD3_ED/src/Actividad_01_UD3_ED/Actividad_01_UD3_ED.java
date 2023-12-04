@@ -12,29 +12,29 @@ import java.io.IOException;
 
 /**
  *
- * @author ana
+ * @author pablo
  */
 public class Actividad_01_UD3_ED 
 {
-    private static byte[] buffer = new byte[1000];
-    private static String fileName = "fichero.dat";
-    private static FileInputStream inputStream = null;
-    private static BufferedInputStream inputBuffer = null;
+    private static byte[] intermedio = new byte[1000];
+    private static String nombreArchivo = "fichero.dat";
+    private static FileInputStream flujoEntrada = null;
+    private static BufferedInputStream bufferEntrada = null;
 
     public static void inicializateFiles() throws FileNotFoundException
     {
-        inputStream = new FileInputStream(fileName);
-        inputBuffer = new BufferedInputStream(inputStream);
+        flujoEntrada = new FileInputStream(nombreArchivo);
+        bufferEntrada = new BufferedInputStream(flujoEntrada);
     }
     
     public static int showFileText() throws IOException
     {
         int total = 0;
-        int nRead = 0;
-        while((nRead = inputStream.read(buffer)) != -1) 
+        int nLeidos = 0;
+        while((nLeidos = flujoEntrada.read(intermedio)) != -1) 
         {
-            System.out.println(new String(buffer));
-            total += nRead;
+            System.out.println(new String(intermedio));
+            total += nLeidos;
         }
         
         return total;
@@ -61,10 +61,10 @@ public class Actividad_01_UD3_ED
         {
             try 
             {
-                if( inputBuffer != null && inputStream != null )
+                if( bufferEntrada != null && flujoEntrada != null )
                 {
-                    inputStream.close();
-                    inputBuffer.close();
+                    flujoEntrada.close();
+                    bufferEntrada.close();
                 }                
             } 
             catch (IOException ex) 
